@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
 public class PrintingLCS{    
@@ -12,12 +13,12 @@ public class PrintingLCS{
                 else
                     dp[i][j] = Math.max(dp[i-1][j], dp[i][j-1]);
         int max = dp[s.length()][t.length()];      
-        List<String> ans = new ArrayList<>();
+        HashSet<String> ans = new HashSet<>();
         for(int [] d: dp)
             System.out.println(Arrays.toString(d));
         for(int i = 1; i<=s.length(); i++){
             for(int j = 1; j<=t.length(); j++){          
-                if(dp[i][j]==max && s.charAt(i-1)==t.charAt(j-1)){
+                if(dp[i][j]==max){
                     int first = i;
                     int second = j;
                     char [] ch = new char[max];
@@ -39,8 +40,8 @@ public class PrintingLCS{
                 }               
             }
         }
-       
-        return ans;
+        System.out.println(ans);
+        return null;   
     }
     public static void main(String[] args) {
        System.out.println(all_longest_common_subsequences("abaaa", "baabaca"));
